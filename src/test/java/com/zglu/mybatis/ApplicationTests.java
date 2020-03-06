@@ -26,9 +26,9 @@ class ApplicationTests {
 
     @Test
     void contextLoads() {
+        Assertions.assertNotNull(userMapper, "userMapper not be null");
         int id = 1;
         Map map = userMapper.findById(id);
-        Assertions.assertNotNull(map, "test");
         log.info(map);
     }
 
