@@ -1,5 +1,6 @@
 package com.zglu.mybatis;
 
+import com.zglu.mybatis.entity.User;
 import com.zglu.mybatis.mapper.UserMapper;
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Assertions;
@@ -9,8 +10,6 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-
-import java.util.Map;
 
 /**
  * @author zglu
@@ -27,9 +26,8 @@ class ApplicationTests {
     @Test
     void contextLoads() {
         Assertions.assertNotNull(userMapper, "userMapper not be null");
-        int id = 1;
-        Map map = userMapper.findById(id);
-        log.info(map);
+        User user = userMapper.findById(1);
+        log.info(user);
     }
 
 }
