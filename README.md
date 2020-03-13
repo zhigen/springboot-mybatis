@@ -15,7 +15,7 @@
 ## 2 启动数据库
     2.1、docker pull mysql
     2.2、docker run -d -p 3306:3306 -v /F/data/docker/mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 mysql
-    2.3、数据库增加zglu库，zglu库增加user表
+    2.3、数据库增加zglu库，zglu库增加user表，user表增加user_name字段
     
 ## <div id="03"></div>
 ## 3 编写代码    

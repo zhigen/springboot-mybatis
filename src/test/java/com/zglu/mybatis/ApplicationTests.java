@@ -26,8 +26,18 @@ class ApplicationTests {
     @Test
     void contextLoads() {
         Assertions.assertNotNull(userMapper, "userMapper not be null");
-        User user = userMapper.findById(1);
-        log.info(user);
+        User user = new User(null, "a");
+        long row = userMapper.insert(user);
+        log.info("增" + row + "行：" + user);
+        user = userMapper.select(user.getId());
+        log.info("查" + "：" + user);
+        user.setUserName("b");
+        row = userMapper.update(user);
+        log.info("改" + row + "行：" + user);
+        row = userMapper.delete(user.getId());
+        log.info("删" + row + "行：" + user.getId());
+        user = userMapper.select(user.getId());
+        log.info("查" + "：" + user);
     }
 
 }
