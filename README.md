@@ -18,7 +18,7 @@
     2.3、确认2.2挂载目录后执行，开启服务
     2.4、数据库增加zglu库
     2.5、zglu库增加user表
-### 参考[test.sql](https://github.com/zhigen/springboot-mybatis/tree/master/src/main/resources/test.sql)
+> 参考[test.sql](https://github.com/zhigen/springboot-mybatis/tree/master/src/main/resources/test.sql)
 
 ## <div id="03"></div>
 ## 3 编写代码

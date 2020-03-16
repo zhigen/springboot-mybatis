@@ -3,6 +3,8 @@ package com.zglu.mybatis.user.dao;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 /**
  * @author zglu
  */
@@ -27,7 +29,24 @@ public interface UserMapper {
      * @return 记录
      */
     @Select("SELECT * FROM user WHERE id = #{id}")
-    User select(@Param("id") long id);
+    User selectById(@Param("id") long id);
+
+    /**
+     * R
+     *
+     * @param searchSql 搜索语句
+     * @return 记录集
+     */
+    @Select("SELECT * FROM user ${searchSql}")
+    List<User> select(@Param("searchSql") String searchSql);
+
+    /**
+     * count
+     *
+     * @return 记录总数
+     */
+    @Select("SELECT count(id) FROM user")
+    long count();
 
     /**
      * U

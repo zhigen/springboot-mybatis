@@ -8,6 +8,8 @@ import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * @author zglu
  */
@@ -19,8 +21,7 @@ public class UserController {
     @PostMapping("/user")
     @ApiOperation("增")
     public User add(@RequestBody User user) {
-        userService.add(user);
-        return user;
+        return userService.add(user);
     }
 
     @GetMapping("/user/{id}")
@@ -32,18 +33,28 @@ public class UserController {
         return userService.get(id);
     }
 
+    @GetMapping("/user")
+    @ApiOperation("查")
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "query", dataType = "string", name = "q", value = "搜索，语法与SQL一致，除属性驼峰外全小写", defaultValue = "id >= 2 and id<=10"),
+            @ApiImplicitParam(paramType = "query", dataType = "string", name = "order", value = "排序，语法与SQL一致，除属性驼峰外全小写", defaultValue = "name asc, id desc"),
+            @ApiImplicitParam(paramType = "query", dataType = "int", name = "offset", value = "偏移量", defaultValue = "0"),
+            @ApiImplicitParam(paramType = "query", dataType = "int", name = "limit", value = "行数", defaultValue = "10"),
+    })
+    public List<User> get(String q, String order, Integer offset, Integer limit) {
+        return userService.list(q, order, offset, limit);
+    }
+
     @PutMapping("/user")
     @ApiOperation("覆盖改")
     public User put(@RequestBody User user) {
-        userService.put(user);
-        return user;
+        return userService.put(user);
     }
 
     @PatchMapping("/user")
     @ApiOperation("改")
     public User set(@RequestBody User user) {
-        userService.set(user);
-        return user;
+        return userService.set(user);
     }
 
     @PatchMapping("/user/{id}")

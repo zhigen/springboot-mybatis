@@ -5,6 +5,8 @@ import com.zglu.mybatis.user.dao.UserDao;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @author zglu
  */
@@ -14,22 +16,23 @@ public class UserService {
     private final UserDao userDao;
 
     public User add(User user) {
-        userDao.insert(user);
-        return user;
+        return userDao.insert(user);
     }
 
     public User get(long id) {
-        return userDao.select(id);
+        return userDao.selectById(id);
+    }
+
+    public List<User> list(String q, String order, Integer offset, Integer limit) {
+        return userDao.select(q, order, offset, limit);
     }
 
     public User put(User user) {
-        userDao.updateAll(user);
-        return user;
+        return userDao.updateAll(user);
     }
 
     public User set(User user) {
-        userDao.update(user);
-        return user;
+        return userDao.update(user);
     }
 
     public User disable(long id) {
