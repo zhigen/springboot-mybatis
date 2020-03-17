@@ -17,10 +17,10 @@ public interface UserMapper {
      * @param user 记录
      * @return 影响行数
      */
-    @Insert("INSERT INTO user(name, create_date, create_by, enable) " +
-            "VALUES(#{name}, #{createdDate}, #{createdBy}, #{enable})")
+    @Insert("INSERT INTO user(id, name, create_date, create_by, enable) " +
+            "VALUES(#{id}, #{name}, #{createdDate}, #{createdBy}, #{enable})")
     @SelectKey(statement = "SELECT LAST_INSERT_ID()", keyProperty = "id", before = false, resultType = long.class)
-    int insert(User user);
+    int save(User user);
 
     /**
      * R
@@ -29,7 +29,7 @@ public interface UserMapper {
      * @return 记录
      */
     @Select("SELECT * FROM user WHERE id = #{id}")
-    User selectById(@Param("id") long id);
+    User findById(@Param("id") long id);
 
     /**
      * R
@@ -38,15 +38,16 @@ public interface UserMapper {
      * @return 记录集
      */
     @Select("SELECT * FROM user ${searchSql}")
-    List<User> select(@Param("searchSql") String searchSql);
+    List<User> findAll(@Param("searchSql") String searchSql);
 
     /**
      * count
      *
+     * @param searchSql 搜索语句
      * @return 记录总数
      */
-    @Select("SELECT count(id) FROM user")
-    long count();
+    @Select("SELECT count(id) FROM user ${searchSql}")
+    long count(@Param("searchSql") String searchSql);
 
     /**
      * U
@@ -87,6 +88,6 @@ public interface UserMapper {
      * @return 影响行数
      */
     @Delete("DELETE FROM user WHERE id=#{id}")
-    int delete(@Param("id") long id);
+    int deleteById(@Param("id") long id);
 
 }

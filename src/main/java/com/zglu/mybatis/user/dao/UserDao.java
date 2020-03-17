@@ -1,6 +1,5 @@
 package com.zglu.mybatis.user.dao;
 
-import com.zglu.mybatis.Page;
 import com.zglu.mybatis.ReplaceUtils;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -17,18 +16,18 @@ import java.util.List;
 public class UserDao {
     private final UserMapper userMapper;
 
-    public User insert(User user) {
+    public User save(User user) {
         user.setCreatedDate(LocalDateTime.now());
         user.setEnable(true);
-        userMapper.insert(user);
+        userMapper.save(user);
         return user;
     }
 
-    public User selectById(long id) {
-        return userMapper.selectById(id);
+    public User findById(long id) {
+        return userMapper.findById(id);
     }
 
-    public List<User> select(String q, String order, Integer offset, Integer limit) {
+    public List<User> findAll(String q, String order, Integer offset, Integer limit) {
         String searchSql = "";
         if (StringUtils.hasText(q)) {
             searchSql += "WHERE " + ReplaceUtils.getColumnName(q);
@@ -39,20 +38,19 @@ public class UserDao {
         if (offset != null && limit != null) {
             searchSql += " LIMIT " + limit + " OFFSET " + offset;
         }
-        return userMapper.select(searchSql);
+        return userMapper.findAll(searchSql);
     }
 
-    public Page<User> selectForPage(String q, String order, Integer page, Integer size) {
-        long total = userMapper.count();
-        int offset = page * size;
-        this.select(q, order, offset, size);
-        Page<User> page = new Page();
-        return page;
+    public long count(String q) {
+        String searchSql = "";
+        if (StringUtils.hasText(q)) {
+            searchSql += "WHERE " + ReplaceUtils.getColumnName(q);
+        }
+        return userMapper.count(searchSql);
     }
 
-    public User updateAll(User user) {
-        userMapper.updateAll(user);
-        return user;
+    public int updateAll(User user) {
+        return userMapper.updateAll(user);
     }
 
     public User update(User user) {
@@ -61,15 +59,8 @@ public class UserDao {
         return user;
     }
 
-    public User disable(long id) {
-        User user = new User();
-        user.setId(id);
-        user.setEnable(false);
-        return this.update(user);
-    }
-
-    public int delete(long id) {
-        return userMapper.delete(id);
+    public int deleteById(long id) {
+        return userMapper.deleteById(id);
     }
 
 }

@@ -1,5 +1,6 @@
 package com.zglu.mybatis.user.controller;
 
+import com.zglu.mybatis.Page;
 import com.zglu.mybatis.user.dao.User;
 import com.zglu.mybatis.user.service.UserService;
 import io.swagger.annotations.ApiImplicitParam;
@@ -41,12 +42,24 @@ public class UserController {
             @ApiImplicitParam(paramType = "query", dataType = "int", name = "offset", value = "偏移量", defaultValue = "0"),
             @ApiImplicitParam(paramType = "query", dataType = "int", name = "limit", value = "行数", defaultValue = "10"),
     })
-    public List<User> get(String q, String order, Integer offset, Integer limit) {
+    public List<User> list(String q, String order, Integer offset, Integer limit) {
         return userService.list(q, order, offset, limit);
     }
 
+    @GetMapping("/user/page")
+    @ApiOperation("查分页")
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "query", dataType = "string", name = "q", value = "搜索，语法与SQL一致，除属性驼峰外全小写", defaultValue = "id >= 2 and id<=10"),
+            @ApiImplicitParam(paramType = "query", dataType = "string", name = "order", value = "排序，语法与SQL一致，除属性驼峰外全小写", defaultValue = "name asc, id desc"),
+            @ApiImplicitParam(paramType = "query", dataType = "int", name = "number", value = "页号", defaultValue = "0"),
+            @ApiImplicitParam(paramType = "query", dataType = "int", name = "size", value = "行数", defaultValue = "10"),
+    })
+    public Page<User> page(String q, String order, Integer number, Integer size) {
+        return userService.page(q, order, number, size);
+    }
+
     @PutMapping("/user")
-    @ApiOperation("覆盖改")
+    @ApiOperation("增或覆盖改")
     public User put(@RequestBody User user) {
         return userService.put(user);
     }
