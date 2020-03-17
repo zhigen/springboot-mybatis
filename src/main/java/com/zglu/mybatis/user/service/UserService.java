@@ -37,10 +37,7 @@ public class UserService {
     }
 
     public User put(User user) {
-        if (userDao.updateAll(user) <= 0) {
-            userDao.save(user);
-        }
-        return user;
+        return userDao.updateAll(user);
     }
 
     public User set(User user) {

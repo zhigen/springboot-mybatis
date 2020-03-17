@@ -1,8 +1,8 @@
 CREATE TABLE `user` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
-  `create_date` datetime DEFAULT NULL,
-  `create_by` int DEFAULT NULL,
+  `created_date` datetime DEFAULT NULL,
+  `created_by` int DEFAULT NULL,
   `last_modified_date` datetime DEFAULT NULL,
   `last_modified_by` int DEFAULT NULL,
   `enable` bit(1) DEFAULT NULL,

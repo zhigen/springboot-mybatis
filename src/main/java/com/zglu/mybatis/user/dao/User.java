@@ -1,8 +1,6 @@
 package com.zglu.mybatis.user.dao;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
 
 import java.time.LocalDateTime;
 
@@ -10,8 +8,6 @@ import java.time.LocalDateTime;
  * @author zglu
  */
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class User {
     private Long id;
     private String name;

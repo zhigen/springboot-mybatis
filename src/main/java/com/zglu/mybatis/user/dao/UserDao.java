@@ -3,6 +3,7 @@ package com.zglu.mybatis.user.dao;
 import com.zglu.mybatis.ReplaceUtils;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
+import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 import java.time.LocalDateTime;
@@ -49,8 +50,13 @@ public class UserDao {
         return userMapper.count(searchSql);
     }
 
-    public int updateAll(User user) {
-        return userMapper.updateAll(user);
+    public User updateAll(User user) {
+        Assert.notNull(user.getId(), "id must not be null!");
+        Assert.isTrue(user.getId() == 0L, "id must not be zero!");
+        if (userMapper.updateAll(user) <= 0) {
+            userMapper.save(user);
+        }
+        return user;
     }
 
     public User update(User user) {

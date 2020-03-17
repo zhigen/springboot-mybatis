@@ -59,7 +59,7 @@ public class UserController {
     }
 
     @PutMapping("/user")
-    @ApiOperation("增或覆盖改")
+    @ApiOperation("覆盖写入")
     public User put(@RequestBody User user) {
         return userService.put(user);
     }

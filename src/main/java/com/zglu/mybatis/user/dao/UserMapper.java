@@ -17,8 +17,8 @@ public interface UserMapper {
      * @param user 记录
      * @return 影响行数
      */
-    @Insert("INSERT INTO user(id, name, create_date, create_by, enable) " +
-            "VALUES(#{id}, #{name}, #{createdDate}, #{createdBy}, #{enable})")
+    @Insert("INSERT INTO user(id, name, created_date, created_by, last_modified_date, last_modified_by, enable) " +
+            "VALUES(#{id}, #{name}, #{createdDate}, #{createdBy}, #{lastModifiedDate}, #{lastModifiedBy}, #{enable})")
     @SelectKey(statement = "SELECT LAST_INSERT_ID()", keyProperty = "id", before = false, resultType = long.class)
     int save(User user);
 
@@ -57,8 +57,8 @@ public interface UserMapper {
      */
     @Update("UPDATE user SET " +
             "name = #{name}, " +
-            "create_date = #{createdDate}, " +
-            "create_by = #{createdBy}, " +
+            "created_date = #{createdDate}, " +
+            "created_by = #{createdBy}, " +
             "last_modified_date = #{lastModifiedDate}, " +
             "last_modified_by = #{lastModifiedBy}, " +
             "enable = #{enable} " +
@@ -73,8 +73,8 @@ public interface UserMapper {
      */
     @Update("UPDATE user SET " +
             "name = CASE WHEN #{name} IS NULL THEN name ELSE #{name} END, " +
-            "create_date = CASE WHEN #{createdDate} IS NULL THEN create_date ELSE #{createdDate} END, " +
-            "create_by = CASE WHEN #{createdBy} IS NULL THEN create_by ELSE #{createdBy} END, " +
+            "created_date = CASE WHEN #{createdDate} IS NULL THEN created_date ELSE #{createdDate} END, " +
+            "created_by = CASE WHEN #{createdBy} IS NULL THEN created_by ELSE #{createdBy} END, " +
             "last_modified_date = CASE WHEN #{lastModifiedDate} IS NULL THEN last_modified_date ELSE #{lastModifiedDate} END, " +
             "last_modified_by = CASE WHEN #{lastModifiedBy} IS NULL THEN last_modified_by ELSE #{lastModifiedBy} END, " +
             "enable = CASE WHEN #{enable} IS NULL THEN enable ELSE #{enable} END " +
