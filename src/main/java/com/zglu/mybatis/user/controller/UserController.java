@@ -65,7 +65,7 @@ public class UserController {
     }
 
     @PatchMapping("/user")
-    @ApiOperation("改")
+    @ApiOperation("改，忽略空属性")
     public User set(@RequestBody User user) {
         return userService.set(user);
     }
