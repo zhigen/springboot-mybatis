@@ -46,7 +46,7 @@ public interface UserMapper {
      * @param searchSql 搜索语句
      * @return 记录总数
      */
-    @Select("SELECT count(id) FROM user ${searchSql}")
+    @Select("SELECT COUNT(id) FROM user ${searchSql}")
     long count(@Param("searchSql") String searchSql);
 
     /**
@@ -78,7 +78,7 @@ public interface UserMapper {
             "last_modified_date = CASE WHEN #{lastModifiedDate} IS NULL THEN last_modified_date ELSE #{lastModifiedDate} END, " +
             "last_modified_by = CASE WHEN #{lastModifiedBy} IS NULL THEN last_modified_by ELSE #{lastModifiedBy} END, " +
             "enable = CASE WHEN #{enable} IS NULL THEN enable ELSE #{enable} END " +
-            "WHERE id=#{id}")
+            "WHERE id = #{id}")
     int update(User user);
 
     /**
@@ -87,7 +87,7 @@ public interface UserMapper {
      * @param id 记录id
      * @return 影响行数
      */
-    @Delete("DELETE FROM user WHERE id=#{id}")
+    @Delete("DELETE FROM user WHERE id = #{id}")
     int deleteById(@Param("id") long id);
 
 }
