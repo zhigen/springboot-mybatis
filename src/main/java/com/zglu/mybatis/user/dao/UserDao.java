@@ -50,7 +50,7 @@ public class UserDao {
         return userMapper.count(searchSql);
     }
 
-    public User updateAll(User user) {
+    public User put(User user) {
         Assert.notNull(user.getId(), "id must not be null!");
         Assert.isTrue(user.getId() != 0L, "id must not be zero!");
         if (userMapper.updateAll(user) <= 0) {

@@ -37,17 +37,18 @@ public class UserService {
     }
 
     public User put(User user) {
-        return userDao.updateAll(user);
+        return userDao.put(user);
     }
 
     public User set(User user) {
         return userDao.update(user);
     }
 
-    public User disable(long id) {
+    public User disable(long id, Long lastModifiedBy) {
         User user = new User();
         user.setId(id);
         user.setEnable(false);
+        user.setLastModifiedBy(lastModifiedBy);
         return userDao.update(user);
     }
 
