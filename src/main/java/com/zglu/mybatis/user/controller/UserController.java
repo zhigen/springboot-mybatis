@@ -25,8 +25,9 @@ public class UserController {
     @PostMapping("/user")
     @ApiOperation("增")
     public User add(@RequestBody User user, HttpServletRequest request) {
-        Long createdBy = NumberUtils.parseNumber(request.getHeader(TOKEN_KEY), Long.class);
-        user.setCreatedBy(createdBy);
+        Long userId = NumberUtils.parseNumber(request.getHeader(TOKEN_KEY), Long.class);
+        user.setCreatedBy(userId);
+        user.setLastModifiedBy(userId);
         return userService.add(user);
     }
 
@@ -65,7 +66,10 @@ public class UserController {
 
     @PutMapping("/user")
     @ApiOperation("覆盖写入")
-    public User put(@RequestBody User user) {
+    public User put(@RequestBody User user, HttpServletRequest request) {
+        Long userId = NumberUtils.parseNumber(request.getHeader(TOKEN_KEY), Long.class);
+        user.setCreatedBy(userId);
+        user.setLastModifiedBy(userId);
         return userService.put(user);
     }
 

@@ -19,6 +19,7 @@ public class UserDao {
 
     public User save(User user) {
         user.setCreatedDate(LocalDateTime.now());
+        user.setLastModifiedDate(LocalDateTime.now());
         user.setEnable(true);
         userMapper.save(user);
         return user;

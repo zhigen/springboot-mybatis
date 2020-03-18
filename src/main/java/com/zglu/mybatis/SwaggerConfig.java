@@ -37,7 +37,7 @@ public class SwaggerConfig {
         //添加通用header参数
         List<Parameter> parameterList = new ArrayList<>();
         ParameterBuilder parameterBuilder = new ParameterBuilder();
-        parameterBuilder.name("token").description("用户认证").modelRef(new ModelRef("string")).parameterType("header").required(false).defaultValue("");
+        parameterBuilder.name("token").description("用户认证").modelRef(new ModelRef("long")).parameterType("header").required(false).defaultValue("0");
         parameterList.add(parameterBuilder.build());
 
         return new Docket(DocumentationType.SWAGGER_2)
