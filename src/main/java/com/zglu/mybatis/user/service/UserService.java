@@ -5,6 +5,7 @@ import com.zglu.mybatis.user.dao.User;
 import com.zglu.mybatis.user.dao.UserDao;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -17,6 +18,14 @@ public class UserService {
     private final UserDao userDao;
 
     public User add(User user) {
+        return userDao.save(user);
+    }
+
+    @Transactional
+    public User add2(User user) {
+        userDao.save(user);
+        int i=1/0;
+        user.setId(null);
         return userDao.save(user);
     }
 

@@ -31,6 +31,15 @@ public class UserController {
         return userService.add(user);
     }
 
+    @PostMapping("/user2")
+    @ApiOperation("增")
+    public User add2(@RequestBody User user, HttpServletRequest request) {
+        Long userId = NumberUtils.parseNumber(request.getHeader(TOKEN_KEY), Long.class);
+        user.setCreatedBy(userId);
+        user.setLastModifiedBy(userId);
+        return userService.add2(user);
+    }
+
     @GetMapping("/user/{id}")
     @ApiOperation("查")
     @ApiImplicitParams({
