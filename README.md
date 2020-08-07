@@ -16,8 +16,8 @@
     2.1、docker pull mysql
     2.2、docker run -d -p 3306:3306 -v /F/data/docker/mysql:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 mysql
     2.3、确认2.2挂载目录后执行，开启服务
-    2.4、数据库增加zglu库
-    2.5、zglu库增加user表
+    2.4、数据库增加zglu0、zglu1库
+    2.5、执行test.sql
 > 参考[test.sql](https://github.com/zhigen/springboot-mybatis/tree/master/src/main/resources/test.sql)
 
 ## <div id="03"></div>
@@ -34,4 +34,4 @@
 
 ## <div id="04"></div>
 ## 4 测试
-> http://localhost:8080/swagger-ui.html
+> http://localhost:8082/swagger-ui.html

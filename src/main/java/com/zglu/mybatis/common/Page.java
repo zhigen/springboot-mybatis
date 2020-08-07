@@ -1,4 +1,4 @@
-package com.zglu.mybatis;
+package com.zglu.mybatis.common;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
